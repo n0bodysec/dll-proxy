@@ -10,7 +10,7 @@ bool LoadProxy()
 	char buffer[MAX_PATH];
 	if (GetSystemDirectoryA(buffer, MAX_PATH) != 0)
 	{
-		std::string fullPath = buffer + std::string(DLL_NAME);
+		std::string fullPath = buffer + std::string("\\") + std::string(DLL_NAME);
 		Proxy::proxyDll = LoadLibraryA(fullPath.c_str());
 
 		if (!Proxy::proxyDll)
