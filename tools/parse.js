@@ -33,7 +33,7 @@ const { join } = require('path');
 		}
 	});
 
-	outputCpp += `\n#define ALLFUNC_COUNT 0x${totalExports.toString(16).toUpperCase()}\n#pragma endregion\n`;
+	outputCpp += `\n#define ALLFUNC_COUNT 0x${totalExports.toString(16).toUpperCase()}\n`;
 
 	await Promise.all([
 		writeFile(join(__dirname, 'definitions.h'), outputCpp, 'utf-8'),
