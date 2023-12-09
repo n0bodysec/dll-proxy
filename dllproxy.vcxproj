@@ -22,12 +22,12 @@
     <ClInclude Include="src\entrypoint.h" />
     <ClInclude Include="src\framework.h" />
     <ClInclude Include="src\proxy\definitions.h" />
-    <ClInclude Include="src\proxy\dllproxy.h" />
+    <ClInclude Include="src\proxy\proxy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entrypoint.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\proxy\dllproxy.cpp" />
+    <ClCompile Include="src\proxy\proxy.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -117,7 +117,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>src/proxy/dllproxy.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/proxy/proxy.def</ModuleDefinitionFile>
       <AdditionalOptions>/PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -140,7 +140,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>src/proxy/dllproxy.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/proxy/proxy.def</ModuleDefinitionFile>
       <AdditionalOptions>/PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -159,7 +159,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>src/proxy/dllproxy.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/proxy/proxy.def</ModuleDefinitionFile>
       <AdditionalOptions>/PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -182,7 +182,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>src/proxy/dllproxy.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/proxy/proxy.def</ModuleDefinitionFile>
       <AdditionalOptions>/PDBALTPATH:%_PDB% %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>

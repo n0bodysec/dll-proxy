@@ -21,4 +21,3 @@
 	FUNC(0x10, VerQueryValueW, 17) \
 
 #define ALLFUNC_COUNT 0x11
-#pragma endregion

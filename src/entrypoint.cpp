@@ -1,21 +1,32 @@
 #include "entrypoint.h"
-#include "proxy/dllproxy.h"
+#include "framework.h"
+#include "proxy/proxy.h"
 #include <iostream>
 
 bool EntryPoint::Init()
 {
-	AllocConsole();
-	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
+	SetupConsole();
 
 	return true;
 }
 
-bool EntryPoint::Unload()
+bool EntryPoint::Unload(const bool free)
 {
-	fclose(stdout);
-	FreeConsole();
+	SetupConsole(true);
 
-	Proxy::Detach(true);
-
-	return true;
+	return Proxy::Detach(free);
 }
+
+void EntryPoint::SetupConsole(const bool unload)
+{
+	if (unload)
+	{
+		fclose(stdout);
+		FreeConsole();
+		return;
+	}
+	
+	AllocConsole();
+	freopen_s(reinterpret_cast<FILE**>(stdout), "CONOUT$", "w", stdout);
+}
+

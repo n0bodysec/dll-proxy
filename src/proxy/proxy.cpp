@@ -1,29 +1,28 @@
-#include "dllproxy.h"
-#include "../entrypoint.h"
+#include "proxy.h"
 #include "definitions.h"
+#include "../entrypoint.h"
 #include <string>
 
 FARPROC p[ALLFUNC_COUNT] = { 0 };
 
 bool LoadProxy()
 {
-	char buffer[MAX_PATH];
-	if (GetSystemDirectoryA(buffer, MAX_PATH) != 0)
+	if (char buffer[MAX_PATH]; GetSystemDirectoryA(buffer, MAX_PATH) != 0)
 	{
-		std::string fullPath = buffer + std::string("\\") + std::string(DLL_NAME);
+		const std::string fullPath = buffer + std::string("\\") + std::string(DLL_NAME);
 		Proxy::proxyDll = LoadLibraryA(fullPath.c_str());
 
 		if (!Proxy::proxyDll)
 		{
 #ifdef _DEBUG
-			std::string message = "Unable to load " + fullPath;
+			const std::string message = "Unable to load " + fullPath;
 			MessageBoxA(NULL, message.c_str(), "dll proxy", MB_OK | MB_ICONERROR | MB_SYSTEMMODAL);
 #endif
 			return false;
 		}
 
 #define REGISTER(num, name, ordinal) p[num] = GetProcAddress(Proxy::proxyDll, #name);
-		ALLFUNC(REGISTER);
+		ALLFUNC(REGISTER)
 #undef REGISTER
 
 		return true;
@@ -32,9 +31,9 @@ bool LoadProxy()
 	return false;
 }
 
-bool Proxy::Attach(LPVOID lpParam)
+DWORD WINAPI Proxy::Attach(const LPVOID lpParam)
 {
-	Proxy::hModule = reinterpret_cast<HMODULE>(lpParam);
+	hModule = static_cast<HMODULE>(lpParam);
 
 	if (!LoadProxy()) return false;
 
@@ -43,16 +42,14 @@ bool Proxy::Attach(LPVOID lpParam)
 #endif
 
 	// load app entrypoint
-	EntryPoint::Init();
-
-	return true;
+	return EntryPoint::Init();
 }
 
-bool Proxy::Detach(bool free)
+bool Proxy::Detach(const bool free)
 {
-	if (!Proxy::proxyDll) return false;
+	if (!proxyDll) return false;
 
-	Proxy::isUnloading = true;
+	isUnloading = true;
 
 	if (free) FreeLibraryAndExitThread(Proxy::hModule, 0);
 	return true;

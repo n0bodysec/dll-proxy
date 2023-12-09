@@ -9,6 +9,6 @@ public:
 	static inline HMODULE proxyDll = nullptr;
 	static inline bool isUnloading = false;
 
-	static bool Attach(LPVOID lpParam);
+	static DWORD WINAPI Attach(LPVOID lpParam);
 	static bool Detach(bool free);
 };

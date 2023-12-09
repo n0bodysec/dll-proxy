@@ -37,7 +37,7 @@ const { join } = require('path');
 
 	await Promise.all([
 		writeFile(join(__dirname, 'definitions.h'), outputCpp, 'utf-8'),
-		writeFile(join(__dirname, 'dllproxy.def'), outputDef, 'utf-8'),
+		writeFile(join(__dirname, 'proxy.def'), outputDef, 'utf-8'),
 	]);
 
 	console.log('Done!');
