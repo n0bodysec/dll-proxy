@@ -1,4 +1,3 @@
-LIBRARY "VERSION"
 EXPORTS
 
 GetFileVersionInfoA = _GetFileVersionInfoA @1

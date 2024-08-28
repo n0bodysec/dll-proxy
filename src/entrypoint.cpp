@@ -3,7 +3,7 @@
 #include "proxy/proxy.h"
 #include <iostream>
 
-bool EntryPoint::Init()
+bool EntryPoint::Init([[maybe_unused]] const LPVOID lpParam)
 {
 	SetupConsole();
 
@@ -25,8 +25,7 @@ void EntryPoint::SetupConsole(const bool unload)
 		FreeConsole();
 		return;
 	}
-	
+
 	AllocConsole();
 	freopen_s(reinterpret_cast<FILE**>(stdout), "CONOUT$", "w", stdout);
 }
-

@@ -1,11 +1,12 @@
 #pragma once
+#include "framework.h"
 
 class EntryPoint
 {
 public:
-	static bool Init();
-	static bool Unload(const bool free);
+	static bool Init(LPVOID lpParam);
+	static bool Unload(bool free);
 
 private:
-	static void SetupConsole(const bool unload = false);
+	static void SetupConsole(bool unload = false);
 };
